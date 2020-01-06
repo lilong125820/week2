@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bw.dao.ColumnDao">
+	<!-- 列表查询 -->
+	<insert id="insert">
+		insert into columnaa values(#{c.id},#{c.gjz},#{c.ms},#{c.name},#{c.cp},#{c.dz},#{c.zb},#{date},null,null,null)
+	</insert>
+	<select id="getlist" resultType="com.bw.domain.Column">
+		select * from columnaa
+		<where>
+			<if test="gjz!=null and gjz!=''">
+				gjz like '%${gjz}%'
+			</if>
+			<if test="ms!=null and ms!=''">
+				and ms like '%${ms}%'
+			</if>
+			<if test="name!=null and name!=''">
+				and name like '%${nr}%'
+			</if>
+			<if test="cp!=null and cp!=''">
+				and cp like '%${nr}%'
+			</if>
+			<if test="dz!=null and dz!=''">
+				and dz like '%${nr}%'
+			</if>
+			<if test="zb!=null and zb!=''">
+				and zb > #{zb}
+			</if>
+			<if test="zb1!=null and zb1!=''">
+				and zb &lt; #{zb1}
+			</if>
+		</where>
+	</select>
+	<select id="select" resultType="com.bw.domain.Column">
+		select * from columnaa where id=#{id}
+	</select>
+	<update id="update">
+		update columnaa set gjz=#{gjz},ms=#{ms},name=#{name},cp=#{cp},dz=#{dz},zb=#{zb},ndate=#{ndate},zt=#{zt},bz=#{bz},date=#{date} where id=#{id}
+	</update>
+</mapper>
